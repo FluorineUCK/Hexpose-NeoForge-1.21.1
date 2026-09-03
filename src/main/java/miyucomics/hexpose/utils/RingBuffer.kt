@@ -1,15 +1,15 @@
 package miyucomics.hexpose.utils
 
-class RingBuffer<T>(private val capacity: Int) : Iterable<T> {
-	val buffer = ArrayDeque<T>(capacity)
-	override fun iterator(): Iterator<T> = buffer.iterator()
+class RingBuffer<T>(private val capacity: Int) {
+	private val buffer = ArrayDeque<T>(capacity)
 
 	fun add(item: T) {
 		if (buffer.size == capacity)
-			buffer.removeFirst()
-		buffer.addLast(item)
+			buffer.removeAt(0)
+		buffer.add(item)
 	}
 
+	fun buffer() = buffer
 	fun last() = buffer.lastOrNull()
 	fun clear() = buffer.clear()
 	fun size(): Int = buffer.size

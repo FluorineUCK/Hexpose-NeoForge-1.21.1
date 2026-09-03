@@ -9,16 +9,16 @@
 			"op_id": "hexpose:get_message",
 			"anchor": "hexpose:get_message",
 			"input": "",
-			"output": "display, display, number",
+			"output": "text, text, number",
 			"text": "hexpose.page.get_message.summary"
 		},
 		{
 			"type": "hexcasting:pattern",
-			"op_id": "hexpose:get_message_indexed",
-			"anchor": "hexpose:get_message_indexed",
-			"input": "num",
-			"output": "display, display, num",
-			"text": "hexpose.page.get_message_indexed.summary"
+			"op_id": "hexpose:get_chat",
+			"anchor": "hexpose:get_chat",
+			"input": "",
+			"output": "list of lists",
+			"text": "hexpose.page.get_chat.summary"
 		}
 	]
 }

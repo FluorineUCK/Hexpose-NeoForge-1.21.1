@@ -1,60 +1,44 @@
 package miyucomics.hexpose.utils
 
-import net.minecraft.text.*
-import net.minecraft.util.Formatting
-import net.minecraft.util.Identifier
-import net.minecraft.util.Language
+import net.minecraft.locale.Language
+import net.minecraft.network.chat.Component
+import net.minecraft.network.chat.MutableComponent
+import net.minecraft.network.chat.Style
+import net.minecraft.network.chat.contents.PlainTextContents.LiteralContents
+import net.minecraft.network.chat.contents.TranslatableContents
 
 object TextUtils {
-	fun disintegrateText(text: Text, parentStyle: Style, out: MutableList<Text>) {
-		val effectiveStyle = text.style.withParent(parentStyle)
-		val content = text.content
-		if (content is LiteralTextContent)
-			content.string.forEach { out += Text.literal(it.toString()).setStyle(effectiveStyle) }
+	fun split(text: Component): MutableList<Component> {
+		val chars = mutableListOf<Component>()
+		collectStyledCharacters(text, text.style, chars)
+		return chars
+	}
+
+	private fun collectStyledCharacters(text: Component, parentStyle: Style, out: MutableList<Component>) {
+		val effectiveStyle = text.style.applyTo(parentStyle)
+		val content = text.contents
+		if (content is LiteralContents)
+			content.text.forEach { out += Component.literal(it.toString()).setStyle(effectiveStyle) }
 		for (child in text.siblings)
-			disintegrateText(child, effectiveStyle, out)
+			collectStyledCharacters(child, effectiveStyle, out)
 	}
 }
 
-// turns an identifier string like `minecraft:the_end` into a Text saying The End, useful for various iota displays
-fun Identifier.wordify(): String = this.path.split("_").joinToString(" ") { it.lowercase().replaceFirstChar(Char::titlecase) }
-fun String.wordify(): MutableText = Text.literal(this.split(":")[1].split("_").joinToString(" ") { it.lowercase().replaceFirstChar(Char::titlecase) })
-
-// a little utility method that returns a copy of a text with default values for styles so that it does not take on anything from its parent if one exists
-fun Text.makeIndependent(): Text {
-	var independentStyle = style
-	if (style.color == null)
-		independentStyle = independentStyle.withColor(Formatting.WHITE)
-	if (style.bold == null)
-		independentStyle = independentStyle.withBold(false)
-	if (style.italic == null)
-		independentStyle = independentStyle.withItalic(false)
-	if (style.underlined == null)
-		independentStyle = independentStyle.withUnderline(false)
-	if (style.strikethrough == null)
-		independentStyle = independentStyle.withStrikethrough(false)
-	if (style.obfuscated == null)
-		independentStyle = independentStyle.withObfuscated(false)
-	if (style.font == null)
-		independentStyle = independentStyle.withFont(Style.DEFAULT_FONT_ID)
-	return this.copy().setStyle(independentStyle)
-}
-
-// nice little function that recursively explores and flattens Text into English literals
-fun Text.sanitize(): Text {
-	val sanitizedRoot: MutableText = when (val content = this.content) {
-		is LiteralTextContent -> Text.literal(content.string)
-		is TranslatableTextContent -> {
-			val pattern = Language.getInstance().get(content.key)
+// nice little function that recursively explores and flattens Text into consistent literals
+fun Component.sanitize(): Component {
+	val sanitizedRoot: MutableComponent = when (val content = this.contents) {
+		is LiteralContents -> Component.literal(content.text)
+		is TranslatableContents -> {
+			val pattern = Language.getInstance().getOrDefault(content.key)
 			val args = content.args.map { arg ->
 				when (arg) {
-					is Text -> arg.sanitize().string
+					is Component -> arg.sanitize().string
 					else -> arg.toString()
 				}
 			}.toTypedArray()
-			Text.literal(String.format(pattern, *args))
+			Component.literal(String.format(pattern, *args))
 		}
-		else -> Text.literal("arimfexendrapuse")
+		else -> Component.literal("arimfexendrapuse")
 	}
 
 	sanitizedRoot.style = this.style

@@ -8,17 +8,9 @@
 			"type": "hexcasting:pattern",
 			"op_id": "hexpose:entity_width",
 			"anchor": "hexpose:entity_width",
-			"input": "entity/entity type",
-			"output": "number",
-			"text": "hexpose.page.entity_width.summary"
-		},
-		{
-			"type": "hexcasting:pattern",
-			"op_id": "hexpose:body_yaw",
-			"anchor": "hexpose:body_yaw",
 			"input": "entity",
 			"output": "number",
-			"text": "hexpose.page.body_yaw.summary"
+			"text": "hexpose.page.entity_width.summary"
 		},
 		{
 			"type": "hexcasting:pattern",
@@ -27,14 +19,6 @@
 			"input": "entity",
 			"output": "vector",
 			"text": "hexpose.page.theodolite.summary"
-		},
-		{
-			"type": "hexcasting:pattern",
-			"op_id": "hexpose:absorption_hearts",
-			"anchor": "hexpose:absorption_hearts",
-			"input": "entity",
-			"output": "number",
-			"text": "hexpose.page.absorption_hearts.summary"
 		},
 		{
 			"type": "hexcasting:pattern",
@@ -134,43 +118,11 @@
 		},
 		{
 			"type": "hexcasting:pattern",
-			"op_id": "hexpose:angry_at",
-			"anchor": "hexpose:angry_at",
+			"op_id": "hexpose:shooter",
+			"anchor": "hexpose:shooter",
 			"input": "entity",
 			"output": "entity/null",
-			"text": "hexpose.page.angry_at.summary"
-		},
-		{
-			"type": "hexcasting:pattern",
-			"op_id": "hexpose:angry_time",
-			"anchor": "hexpose:angry_time",
-			"input": "entity",
-			"output": "number",
-			"text": "hexpose.page.angry_time.summary"
-		},
-		{
-			"type": "hexcasting:pattern",
-			"op_id": "hexpose:last_attacker",
-			"anchor": "hexpose:last_attacker",
-			"input": "entity",
-			"output": "entity/null",
-			"text": "hexpose.page.last_attacker.summary"
-		},
-		{
-			"type": "hexcasting:pattern",
-			"op_id": "hexpose:last_attacked",
-			"anchor": "hexpose:last_attacked",
-			"input": "entity",
-			"output": "number",
-			"text": "hexpose.page.last_attacked.summary"
-		},
-		{
-			"type": "hexcasting:pattern",
-			"op_id": "hexpose:entity_name",
-			"anchor": "hexpose:entity_name",
-			"input": "entity",
-			"output": "display",
-			"text": "hexpose.page.entity_name.summary"
+			"text": "hexpose.page.shooter.summary"
 		},
 		{
 			"type": "hexcasting:pattern",
@@ -182,27 +134,11 @@
 		},
 		{
 			"type": "hexcasting:pattern",
-			"op_id": "hexpose:shooter",
-			"anchor": "hexpose:shooter",
-			"input": "entity",
-			"output": "entity/null",
-			"text": "hexpose.page.shooter.summary"
-		},
-		{
-			"type": "hexcasting:pattern",
-			"op_id": "hexpose:projectile_age",
-			"anchor": "hexpose:projectile_age",
+			"op_id": "hexpose:absorption_hearts",
+			"anchor": "hexpose:absorption_hearts",
 			"input": "entity",
 			"output": "number",
-			"text": "hexpose.page.projectile_age.summary"
-		},
-		{
-			"type": "hexcasting:pattern",
-			"op_id": "hexpose:is_monster",
-			"anchor": "hexpose:is_monster",
-			"input": "entity",
-			"output": "boolean",
-			"text": "hexpose.page.is_monster.summary"
+			"text": "hexpose.page.absorption_hearts.summary"
 		}
 	]
 }

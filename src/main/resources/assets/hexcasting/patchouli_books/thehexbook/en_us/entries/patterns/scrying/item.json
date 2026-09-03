@@ -24,7 +24,7 @@
 			"type": "hexcasting:pattern",
 			"op_id": "hexpose:create_stack",
 			"anchor": "hexpose:create_stack",
-			"input": "item coerceable, number",
+			"input": "identifier, number",
 			"output": "item",
 			"text": "hexpose.page.create_stack.summary"
 		},
@@ -88,7 +88,7 @@
 			"type": "hexcasting:pattern",
 			"op_id": "hexpose:count_max_stack",
 			"anchor": "hexpose:count_max_stack",
-			"input": "item coerceable",
+			"input": "identifier",
 			"output": "number",
 			"text": "hexpose.page.count_max_stack.summary"
 		},
@@ -96,7 +96,7 @@
 			"type": "hexcasting:pattern",
 			"op_id": "hexpose:damage_stack",
 			"anchor": "hexpose:damage_stack",
-			"input": "item coerceable",
+			"input": "item",
 			"output": "number",
 			"text": "hexpose.page.damage_stack.summary"
 		},
@@ -104,32 +104,32 @@
 			"type": "hexcasting:pattern",
 			"op_id": "hexpose:damage_max_stack",
 			"anchor": "hexpose:damage_max_stack",
-			"input": "item coerceable",
+			"input": "identifier",
 			"output": "number",
 			"text": "hexpose.page.damage_max_stack.summary"
 		},
 		{
 			"type": "hexcasting:pattern",
-			"op_id": "hexcasting:readable/entity",
-			"anchor": "hexcasting:readable/entity",
+			"op_id": "hexpose:get_enchantments",
+			"anchor": "hexpose:get_enchantments",
 			"input": "item",
-			"output": "boolean",
-			"text": "hexpose.page.readable_item.summary"
+			"output": "list of identifiers",
+			"text": "hexpose.page.get_enchantments.summary"
 		},
 		{
 			"type": "hexcasting:pattern",
-			"op_id": "hexcasting:read/entity",
-			"anchor": "hexcasting:read/entity",
-			"input": "item",
-			"output": "any",
-			"text": "hexpose.page.read_item.summary"
+			"op_id": "hexpose:get_enchantment_strength",
+			"anchor": "hexpose:get_enchantment_strength",
+			"input": "item, identifier",
+			"output": "number",
+			"text": "hexpose.page.get_enchantment_strength.summary"
 		},
 		{
 			"type": "hexcasting:pattern",
 			"op_id": "hexpose:item_name",
 			"anchor": "hexpose:item_name",
 			"input": "item",
-			"output": "display",
+			"output": "text",
 			"text": "hexpose.page.item_name.summary"
 		},
 		{
@@ -137,7 +137,7 @@
 			"op_id": "hexpose:item_lore",
 			"anchor": "hexpose:item_lore",
 			"input": "item",
-			"output": "list of displays",
+			"output": "list of text",
 			"text": "hexpose.page.item_lore.summary"
 		},
 		{

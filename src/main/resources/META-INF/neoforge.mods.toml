@@ -1,0 +1,42 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "MIT"
+
+[[mods]]
+modId = "hexpose"
+version = "${version}"
+displayName = "Hexpose"
+logoFile = "assets/hexpose/icon.png"
+authors = "miyucomics"
+description = '''
+A Hex Casting addon all about getting information about the world.
+'''
+displayURL = "https://github.com/miyucomics/hexpose"
+
+[[dependencies.hexpose]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1.111,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.hexpose]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1,1.21.2)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.hexpose]]
+modId = "kotlinforforge"
+type = "required"
+versionRange = "[5.12.0,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.hexpose]]
+modId = "hexcasting"
+type = "required"
+versionRange = "[0.12.0-devel-pre-35,)"
+ordering = "AFTER"
+side = "BOTH"

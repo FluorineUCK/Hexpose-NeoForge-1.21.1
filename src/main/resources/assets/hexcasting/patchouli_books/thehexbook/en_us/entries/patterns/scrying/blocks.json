@@ -6,25 +6,9 @@
 	"pages": [
 		{
 			"type": "hexcasting:pattern",
-			"op_id": "hexpose:is_block_air",
-			"anchor": "hexpose:is_block_air",
-			"input": "vector",
-			"output": "boolean",
-			"text": "hexpose.page.is_block_air.summary"
-		},
-		{
-			"type": "hexcasting:pattern",
-			"op_id": "hexpose:is_block_replaceable",
-			"anchor": "hexpose:is_block_replaceable",
-			"input": "vector",
-			"output": "boolean",
-			"text": "hexpose.page.is_block_replaceable.summary"
-		},
-		{
-			"type": "hexcasting:pattern",
 			"op_id": "hexpose:block_hardness",
 			"anchor": "hexpose:block_hardness",
-			"input": "block type",
+			"input": "identifier",
 			"output": "number",
 			"text": "hexpose.page.block_hardness.summary"
 		},
@@ -32,7 +16,7 @@
 			"type": "hexcasting:pattern",
 			"op_id": "hexpose:block_blast_resistance",
 			"anchor": "hexpose:block_blast_resistance",
-			"input": "block type",
+			"input": "identifier",
 			"output": "number",
 			"text": "hexpose.page.block_blast_resistance.summary"
 		},
@@ -58,39 +42,31 @@
 		},
 		{
 			"type": "hexcasting:pattern",
-			"op_id": "hexpose:block_slipperiness",
-			"anchor": "hexpose:block_slipperiness",
-			"input": "block type",
-			"output": "number",
-			"text": "hexpose.page.block_slipperiness.summary"
-		},
-		{
-			"type": "hexcasting:pattern",
-			"op_id": "hexpose:block_map_color",
-			"anchor": "hexpose:block_map_color",
-			"input": "block type",
-			"output": "vector",
-			"text": "hexpose.page.block_map_color.summary"
-		},
-		{
-			"type": "hexcasting:pattern",
 			"op_id": "hexpose:get_blockstates",
 			"anchor": "hexpose:get_blockstates",
 			"input": "vector",
-			"output": "list of strings",
+			"output": "list of identifiers",
 			"text": "hexpose.page.get_blockstates.summary"
 		},
 		{
 			"type": "hexcasting:pattern",
 			"op_id": "hexpose:query_blockstate",
 			"anchor": "hexpose:query_blockstate",
-			"input": "vector, string",
+			"input": "vector, identifier",
 			"output": "any",
 			"text": "hexpose.page.query_blockstate.summary"
 		},
 		{
 			"type": "patchouli:text",
 			"text": "hexpose.page.query_blockstate.description"
+		},
+		{
+			"type": "hexcasting:pattern",
+			"op_id": "hexpose:block_map_color",
+			"anchor": "hexpose:block_map_color",
+			"input": "identifier",
+			"output": "vector",
+			"text": "hexpose.page.block_map_color.summary"
 		}
 	]
 }

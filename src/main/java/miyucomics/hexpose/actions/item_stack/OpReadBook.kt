@@ -6,19 +6,26 @@ import at.petrak.hexcasting.api.casting.iota.Iota
 import at.petrak.hexcasting.api.casting.iota.ListIota
 import at.petrak.hexcasting.api.casting.iota.NullIota
 import miyucomics.hexpose.iotas.DisplayIota
-import net.minecraft.item.WritableBookItem
-import net.minecraft.item.WrittenBookItem
-import net.minecraft.nbt.NbtElement
-import net.minecraft.text.Text
-import ram.talia.moreiotas.api.getItemStack
+import miyucomics.hexpose.iotas.getItemStack
+import net.minecraft.core.component.DataComponents
+import net.minecraft.world.item.WritableBookItem
+import net.minecraft.world.item.WrittenBookItem
+import net.minecraft.network.chat.Component
 
 object OpReadBook : ConstMediaAction {
 	override val argc = 1
 	override fun execute(args: List<Iota>, env: CastingEnvironment): List<Iota> {
 		val book = args.getItemStack(0, argc)
 		val pages = when (book.item) {
-			is WritableBookItem -> book.nbt?.getList("pages", NbtElement.STRING_TYPE.toInt())?.map { DisplayIota.createSanitized(Text.literal(it.asString())) } ?: return listOf(NullIota())
-			is WrittenBookItem -> book.nbt?.getList("pages", NbtElement.STRING_TYPE.toInt())?.map { DisplayIota.createSanitized(Text.Serializer.fromJson(it.asString())!!) } ?: return listOf(NullIota())
+			is WritableBookItem -> book.get(DataComponents.WRITABLE_BOOK_CONTENT)
+				?.getPages(false)
+				?.map { DisplayIota.createSanitized(Component.literal(it)) }
+				?.toList()
+				?: return listOf(NullIota())
+			is WrittenBookItem -> book.get(DataComponents.WRITTEN_BOOK_CONTENT)
+				?.getPages(false)
+				?.map(DisplayIota::createSanitized)
+				?: return listOf(NullIota())
 			else -> return listOf(NullIota())
 		}
 		return listOf(ListIota(pages))

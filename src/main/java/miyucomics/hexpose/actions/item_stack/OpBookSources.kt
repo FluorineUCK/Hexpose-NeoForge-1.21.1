@@ -6,9 +6,11 @@ import at.petrak.hexcasting.api.casting.iota.DoubleIota
 import at.petrak.hexcasting.api.casting.iota.Iota
 import at.petrak.hexcasting.api.casting.iota.NullIota
 import miyucomics.hexpose.iotas.DisplayIota
-import net.minecraft.item.WrittenBookItem
-import net.minecraft.text.Text
-import ram.talia.moreiotas.api.getItemStack
+import miyucomics.hexpose.iotas.getItemStack
+import net.minecraft.core.component.DataComponents
+import net.minecraft.world.item.WrittenBookItem
+import net.minecraft.world.item.component.WrittenBookContent
+import net.minecraft.network.chat.Component
 
 object OpBookSources : ConstMediaAction {
 	override val argc = 1
@@ -16,9 +18,10 @@ object OpBookSources : ConstMediaAction {
 		val book = args.getItemStack(0, argc)
 		if (book.item !is WrittenBookItem)
 			return listOf(NullIota())
+		val content = book.get(DataComponents.WRITTEN_BOOK_CONTENT) ?: WrittenBookContent.EMPTY
 		return listOf(
-			DisplayIota.createSanitized(Text.literal(book.orCreateNbt.getString(WrittenBookItem.AUTHOR_KEY))),
-			DoubleIota(book.orCreateNbt.getInt(WrittenBookItem.GENERATION_KEY).toDouble())
+			DisplayIota.createSanitized(Component.literal(content.author)),
+			DoubleIota(content.generation.toDouble())
 		)
 	}
 }
